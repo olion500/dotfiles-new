@@ -73,6 +73,7 @@ echo $PROFILE # 현재 프로필 확인
 ```
 dotfiles/
 ├── .chezmoiroot
+├── Dockerfile              # Docker 테스트용
 ├── Makefile
 ├── home/
 │   ├── .chezmoi.yaml.tmpl    # 초기 설정
@@ -94,6 +95,53 @@ make test   # dry-run 테스트
 make diff   # 변경사항 보기
 make apply  # 적용
 make clean  # chezmoi 상태 초기화
+```
+
+## Docker 테스트
+
+Ubuntu 환경에서 dotfiles를 테스트할 수 있습니다.
+
+### 빠른 테스트 (dry-run)
+
+```bash
+make docker-test
+```
+
+이 명령은:
+1. Ubuntu 24.04 기반 Docker 이미지 빌드
+2. chezmoi 설치
+3. `chezmoi apply --dry-run` 실행하여 결과 확인
+
+### 대화형 셸로 테스트
+
+```bash
+make docker-shell
+```
+
+컨테이너 내부에서 직접 테스트:
+
+```bash
+# 컨테이너 진입 후
+chezmoi init --source=/home/testuser/.local/share/chezmoi
+chezmoi apply
+
+# 결과 확인
+cat ~/.zshrc
+cat ~/.gitconfig
+```
+
+### 수동 Docker 명령
+
+```bash
+# 이미지 빌드
+docker build -t dotfiles-test .
+
+# 테스트 실행
+docker run --rm -v "$(pwd):/home/testuser/.local/share/chezmoi" dotfiles-test \
+    chezmoi apply --dry-run --verbose
+
+# 대화형 셸
+docker run -it --rm -v "$(pwd):/home/testuser/.local/share/chezmoi" dotfiles-test
 ```
 
 ## 커스터마이징
