@@ -1,0 +1,20 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $name := promptStringOnce . "name" "Your name" -}}
+
+sourceDir: {{ .chezmoi.sourceDir | quote }}
+
+data:
+  name: {{ $name | quote }}
+  email: {{ $email | quote }}
+
+  # OS detection
+  ostype: {{ .chezmoi.os | quote }}
+  arch: {{ .chezmoi.arch | quote }}
+  isMac: {{ eq .chezmoi.os "darwin" }}
+  isLinux: {{ eq .chezmoi.os "linux" }}
+
+  # WSL detection
+  isWSL: {{ and (eq .chezmoi.os "linux") (or (env "WSL_DISTRO_NAME") (env "WSLENV")) }}
+
+  # Hostname
+  hostname: {{ .chezmoi.hostname | quote }}

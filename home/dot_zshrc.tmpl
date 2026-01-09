@@ -1,0 +1,69 @@
+# ============================================
+# Common settings
+# ============================================
+export EDITOR=nvim
+export LANG=en_US.UTF-8
+export PATH="$HOME/.local/bin:$PATH"
+
+# ============================================
+# OS-specific settings
+# ============================================
+{{- if .isMac }}
+# === macOS ===
+export PATH="/opt/homebrew/bin:$PATH"
+if command -v brew &> /dev/null; then
+    eval "$(brew shellenv)"
+fi
+{{- end }}
+
+{{- if .isLinux }}
+# === Linux ===
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+{{- end }}
+
+{{- if .isWSL }}
+# === WSL ===
+alias explorer="explorer.exe"
+alias code="code.exe"
+{{- end }}
+
+# ============================================
+# Prompt (Starship)
+# ============================================
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
+
+# ============================================
+# Tool initialization
+# ============================================
+if command -v mise &> /dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
+# ============================================
+# Aliases
+# ============================================
+[ -f ~/.zsh/aliases.zsh ] && source ~/.zsh/aliases.zsh
+
+# ============================================
+# Profile switching
+# ============================================
+use-work() {
+    export PROFILE="work"
+    [ -f ~/.zsh/work.zsh ] && source ~/.zsh/work.zsh
+    echo "Work mode activated"
+}
+
+use-personal() {
+    export PROFILE="personal"
+    [ -f ~/.zsh/personal.zsh ] && source ~/.zsh/personal.zsh
+    echo "Personal mode activated"
+}
+
+# Default profile
+use-personal

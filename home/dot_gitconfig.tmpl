@@ -1,0 +1,28 @@
+[user]
+    name = {{ .name }}
+    email = {{ .email }}
+
+[core]
+    editor = nvim
+{{- if .isMac }}
+    autocrlf = input
+{{- end }}
+{{- if .isWSL }}
+    autocrlf = true
+{{- end }}
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[alias]
+    co = checkout
+    br = branch
+    st = status
+    lg = log --oneline --graph --decorate -20
+
+# Directory-specific settings
+[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig-work
