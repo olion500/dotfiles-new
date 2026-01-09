@@ -14,19 +14,19 @@ chezmoi 기반 크로스 플랫폼 dotfiles 관리
 ### macOS / Linux / WSL
 
 ```bash
-sh -c "$(curl -fsLS https://raw.githubusercontent.com/YOUR_USERNAME/dotfiles/main/scripts/install.sh)"
+sh -c "$(curl -fsLS https://raw.githubusercontent.com/olion500/dotfiles/main/scripts/install.sh)"
 ```
 
 또는 chezmoi가 이미 설치되어 있다면:
 
 ```bash
-chezmoi init --apply YOUR_USERNAME
+chezmoi init --apply olion500
 ```
 
 ## 로컬 개발
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.dotfiles
+git clone https://github.com/olion500/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 chezmoi init --source=. --apply
 ```

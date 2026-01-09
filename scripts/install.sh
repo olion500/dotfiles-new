@@ -5,10 +5,10 @@ set -e
 # Dotfiles Installer
 # ===========================================
 # Usage:
-#   curl -fsLS https://raw.githubusercontent.com/YOUR_USERNAME/dotfiles/main/scripts/install.sh | sh
+#   curl -fsLS https://raw.githubusercontent.com/olion500/dotfiles/main/scripts/install.sh | sh
 # ===========================================
 
-GITHUB_USERNAME="${GITHUB_USERNAME:-YOUR_USERNAME}"
+GITHUB_USERNAME="${GITHUB_USERNAME:-olion500}"
 CHEZMOI_BIN="$HOME/.local/bin/chezmoi"
 
 echo "==> Installing dotfiles..."
