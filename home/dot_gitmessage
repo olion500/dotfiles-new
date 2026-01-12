@@ -1,0 +1,15 @@
+
+# <type>: <subject>
+# |<---- 50 chars ---->|
+
+# Body (optional)
+# |<---- 72 chars ---->|
+
+# Types:
+# feat     : New feature
+# fix      : Bug fix
+# docs     : Documentation
+# style    : Formatting (no code change)
+# refactor : Code refactoring
+# test     : Adding tests
+# chore    : Maintenance

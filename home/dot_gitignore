@@ -1,0 +1,51 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+*.sw[nop]
+*.swp
+*~
+.idea/
+.vscode/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+bower_components/
+vendor/
+
+# Build
+/dist/
+/build/
+*.log
+
+# Python
+*.pyc
+__pycache__/
+.venv/
+
+# Ruby
+.bundle/
+.byebug_history
+
+# Database
+*.sqlite3
+
+# Temp
+/tmp/
+/log/
+
+# Tags
+/tags
+/TAGS
+
+# AI tools
+.claude/
+.cursor/
+.aider/
+CLAUDE.md

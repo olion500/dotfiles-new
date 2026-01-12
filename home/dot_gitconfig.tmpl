@@ -1,9 +1,11 @@
+# Personal (default)
 [user]
     name = {{ .name }}
     email = {{ .email }}
 
 [core]
     editor = nvim
+    excludesfile = ~/.gitignore
 {{- if .isMac }}
     autocrlf = input
 {{- end }}
@@ -14,8 +16,50 @@
 [init]
     defaultBranch = main
 
+[push]
+    default = current
+    autoSetupRemote = true
+    followTags = true
+
 [pull]
     rebase = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[branch]
+    sort = -committerdate
+
+[merge]
+    ff = only
+
+[rebase]
+    autosquash = true
+    autoStash = true
+
+[tag]
+    sort = version:refname
+
+[color]
+    ui = auto
+
+[help]
+    autocorrect = prompt
+
+[commit]
+    template = ~/.gitmessage
+
+# Local overrides
+[include]
+    path = ~/.gitconfig.local
 
 # Directory-specific settings
 [includeIf "gitdir:~/work/"]

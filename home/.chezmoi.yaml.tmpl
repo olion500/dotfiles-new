@@ -1,12 +1,6 @@
-{{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $name := promptStringOnce . "name" "Your name" -}}
-
 sourceDir: {{ .chezmoi.sourceDir | quote }}
 
 data:
-  name: {{ $name | quote }}
-  email: {{ $email | quote }}
-
   # OS detection
   ostype: {{ .chezmoi.os | quote }}
   arch: {{ .chezmoi.arch | quote }}
