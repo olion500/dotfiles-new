@@ -1,4 +1,38 @@
 # ============================================
+# Zsh core settings (minimal, no omz)
+# ============================================
+
+# History
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY       # Write the history file in the ':start:elapsed;command' format
+setopt HIST_EXPIRE_DUPS_FIRST # Expire a duplicate event first when trimming history
+setopt HIST_IGNORE_DUPS       # Do not record an event that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS   # Delete an old recorded event if a new event is a duplicate
+setopt HIST_FIND_NO_DUPS      # Do not display a previously found event
+setopt HIST_IGNORE_SPACE      # Do not record an event starting with a space
+setopt HIST_SAVE_NO_DUPS      # Do not write a duplicate event to the history file
+setopt SHARE_HISTORY          # Share history between all sessions
+
+# Directory navigation
+setopt AUTO_CD                # cd by just typing directory name
+setopt AUTO_PUSHD             # Push directories onto stack
+setopt PUSHD_IGNORE_DUPS      # Don't push duplicates
+setopt PUSHD_SILENT           # Don't print directory stack
+
+# Completion
+autoload -Uz compinit
+compinit -C                   # -C for faster startup (skip security check)
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive
+
+# Key bindings (emacs style, but vi available with set -o vi)
+bindkey -e
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+# ============================================
 # Common settings
 # ============================================
 export EDITOR=nvim
@@ -6,19 +40,16 @@ export LANG=en_US.UTF-8
 export PATH="$HOME/.local/bin:$PATH"
 
 # ============================================
-# OS-specific settings
+# Homebrew (macOS and Linux)
 # ============================================
 {{- if .isMac }}
-# === macOS ===
-export PATH="/opt/homebrew/bin:$PATH"
-if command -v brew &> /dev/null; then
-    eval "$(brew shellenv)"
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-{{- end }}
-
-{{- if .isLinux }}
-# === Linux ===
-export PATH="$HOME/.linuxbrew/bin:$PATH"
+{{- else }}
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 {{- end }}
 
 {{- if .isWSL }}
@@ -45,10 +76,17 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
+# fzf integration (installed via Homebrew)
+if command -v fzf &> /dev/null; then
+    source "$(brew --prefix)/opt/fzf/shell/completion.zsh" 2>/dev/null
+    source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh" 2>/dev/null
+fi
+
 # ============================================
-# Aliases
+# Source additional configs
 # ============================================
 [ -f ~/.zsh/aliases.zsh ] && source ~/.zsh/aliases.zsh
+[ -f ~/.zsh/git.zsh ] && source ~/.zsh/git.zsh
 
 # ============================================
 # Profile switching
