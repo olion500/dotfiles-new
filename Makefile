@@ -1,34 +1,30 @@
-.PHONY: test diff apply clean docker-build docker-test docker-shell
+.PHONY: help test diff apply clean docker-build docker-test docker-shell
 
-# Dry-run test
-test:
+help: ## Show help message
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\033[36m\033[0m\n"} /^[$$()% 0-9a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+##@ Chezmoi
+
+test: ## Dry-run test
 	chezmoi apply --dry-run --verbose
 
-# Show diff
-diff:
+diff: ## Show diff
 	chezmoi diff
 
-# Apply changes
-apply:
+apply: ## Apply changes
 	chezmoi apply
 
-# Purge chezmoi state
-clean:
+clean: ## Purge chezmoi state
 	chezmoi purge
 
-# =====================
-# Docker testing
-# =====================
+##@ Docker
 
-# Build test image
-docker-build:
+docker-build: ## Build test image
 	docker build -t dotfiles-test .
 
-# Run tests in container (non-interactive)
-docker-test: docker-build
+docker-test: docker-build ## Run tests in container (non-interactive)
 	docker run --rm -v "$$(pwd):/home/testuser/.local/share/chezmoi" dotfiles-test \
-		chezmoi apply --dry-run --verbose
+		sh -c 'mkdir -p ~/.config/chezmoi && printf "data:\n  name: Test User\n  email: test@example.com\n  ostype: linux\n  arch: amd64\n  isMac: false\n  isLinux: true\n  isWSL: false\n  hostname: test-container\n" > ~/.config/chezmoi/chezmoi.yaml && chezmoi apply --dry-run --verbose'
 
-# Interactive shell in container
-docker-shell: docker-build
-	docker run -it --rm -v "$$(pwd):/home/testuser/.local/share/chezmoi" dotfiles-test
+docker-shell: docker-build ## Interactive shell in container
+	docker run -it --rm -v "$$(pwd):/home/testuser/.local/share/chezmoi" dotfiles-test /bin/zsh
