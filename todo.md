@@ -66,30 +66,10 @@ home/dot_config/lazygit/config.yml
 
 ## Low Priority
 
-### Brewfile 추가
-설치할 패키지들을 Brewfile로 관리
-```bash
-# Formulas
-brew "starship"
-brew "zoxide"
-brew "fzf"
-brew "eza"
-brew "bat"
-brew "fd"
-brew "ripgrep"
-brew "mise"
-brew "neovim"
-brew "lazygit"
-brew "tmux"
-
-# Casks (macOS only)
-cask "ghostty"
-cask "raycast"
-cask "rectangle"
-cask "stats"
-cask "alt-tab"
-cask "orbstack"
-```
+### ~~Brewfile 추가~~ ✅
+- [x] `dot_Brewfile` - 공통 패키지 (CLI tools, dev tools)
+- [x] `dot_Brewfile.mac` - macOS 전용 (casks, fonts)
+- [x] `.chezmoiignore`에서 Linux는 .Brewfile.mac 제외
 
 ### SSH config 템플릿
 ```
