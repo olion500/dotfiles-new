@@ -29,14 +29,10 @@
 - [x] `dot_gitmessage` 커밋 템플릿 추가
 - [x] `dot_gitignore` global ignore 추가
 
-### Tmux 설정 추가
-기존 `~/dotfiles/tmux.conf` 활용
-```
-home/dot_tmux.conf
-```
-- Vim 키바인딩
-- Ctrl+s prefix
-- 256 color 지원
+### ~~Tmux 설정 추가~~ ✅
+- [x] `home/dot_tmux.conf` 추가
+- [x] Vim 키바인딩, Ctrl+s prefix, 마우스 지원
+- [x] Starship 테마와 어울리는 status bar
 
 ## Medium Priority
 
