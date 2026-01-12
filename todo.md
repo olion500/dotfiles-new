@@ -19,16 +19,15 @@
 ### ~~Starship 설정 추가~~ ✅
 - [x] `home/dot_config/starship.toml` 추가됨
 
-### Git 설정 개선
-기존 `~/dotfiles/gitconfig`에서 가져올 설정들:
-- [ ] `push.autoSetupRemote = true`
-- [ ] `diff.algorithm = histogram`
-- [ ] `branch.sort = -committerdate`
-- [ ] `fetch.prune = true`
-- [ ] `rebase.autosquash = true`
-- [ ] `help.autocorrect = prompt`
-- [ ] Git template (ctags hooks)
-- [ ] Commit message template (`gitmessage`)
+### ~~Git 설정 개선~~ ✅
+- [x] `push.autoSetupRemote`, `followTags`
+- [x] `diff.algorithm = histogram`, `colorMoved`
+- [x] `branch.sort = -committerdate`
+- [x] `fetch.prune`, `pruneTags`, `all`
+- [x] `rebase.autosquash`, `autoStash`
+- [x] `help.autocorrect = prompt`
+- [x] `dot_gitmessage` 커밋 템플릿 추가
+- [x] `dot_gitignore` global ignore 추가
 
 ### Tmux 설정 추가
 기존 `~/dotfiles/tmux.conf` 활용
