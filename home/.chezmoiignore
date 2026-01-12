@@ -4,3 +4,8 @@ LICENSE
 
 # AstroNvim is installed via script, not managed by chezmoi
 .config/nvim/**
+
+# macOS only files (ignore on Linux)
+{{- if not (eq .chezmoi.os "darwin") }}
+.Brewfile.mac
+{{- end }}

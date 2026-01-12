@@ -1,0 +1,30 @@
+# ===================
+# macOS only packages
+# ===================
+
+# Fonts
+cask "font-hack-nerd-font"
+cask "font-monaspace"
+cask "font-symbols-only-nerd-font"
+
+# Terminal
+cask "ghostty"
+
+# Productivity
+cask "raycast"
+cask "rectangle"
+cask "alt-tab"
+cask "stats"
+cask "appcleaner"
+
+# Development
+cask "orbstack"         # Docker alternative
+cask "yaak"             # Postman alternative
+cask "claude-code"
+
+# Utilities
+cask "obsidian"
+cask "flameshot"
+
+# Input
+cask "gureumkim"        # Korean input

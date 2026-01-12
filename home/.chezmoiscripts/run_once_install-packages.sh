@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install common packages via Homebrew (macOS and Linux)
+# Install packages via Homebrew using Brewfile
 
 set -e
 
@@ -10,26 +10,13 @@ else
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-echo "Installing packages via Homebrew..."
+echo "Installing common packages..."
+brew bundle --file="$HOME/.Brewfile" --no-lock
 
-# All packages in one command
-brew install --quiet \
-    starship \
-    zoxide \
-    fzf \
-    eza \
-    bat \
-    fd \
-    ripgrep \
-    mise \
-    neovim \
-    lazygit \
-    gdu \
-    bottom \
-    tree-sitter
-
-# Nerd Fonts
-# Note: After installation, set "Hack Nerd Font" in your terminal app
-brew install --cask --quiet font-hack-nerd-font 2>/dev/null || true
+# macOS only packages
+if [[ "$OSTYPE" == "darwin"* ]] && [[ -f "$HOME/.Brewfile.mac" ]]; then
+    echo "Installing macOS packages..."
+    brew bundle --file="$HOME/.Brewfile.mac" --no-lock
+fi
 
 echo "Package installation complete!"

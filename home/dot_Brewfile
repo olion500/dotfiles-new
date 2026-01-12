@@ -1,0 +1,37 @@
+# ===================
+# Common packages (macOS & Linux)
+# ===================
+
+# Shell & Prompt
+brew "starship"
+brew "zoxide"
+brew "fzf"
+
+# Modern CLI tools
+brew "eza"          # ls replacement
+brew "bat"          # cat replacement
+brew "fd"           # find replacement
+brew "ripgrep"      # grep replacement
+brew "gdu"          # du replacement
+brew "bottom"       # top replacement
+brew "htop"         # process monitor
+brew "tree"         # directory tree
+brew "tldr"         # simplified man pages
+brew "glow"         # markdown viewer
+
+# Data processing
+brew "jq"           # JSON processor
+brew "yq"           # YAML processor
+brew "wget"         # downloader
+
+# Development
+brew "neovim"
+brew "lazygit"
+brew "gh"
+brew "tmux"
+brew "tree-sitter"
+brew "just"         # command runner
+brew "direnv"       # directory-specific env
+
+# Version management
+brew "mise"
