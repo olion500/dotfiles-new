@@ -15,8 +15,12 @@ RUN useradd -m -s /bin/zsh testuser && \
 USER testuser
 WORKDIR /home/testuser
 
-# Create empty .zshrc to prevent zsh-newuser-install wizard
-RUN touch ~/.zshrc
+# Create .zshrc with setup instructions (prevents zsh-newuser-install wizard)
+RUN echo '' > ~/.zshrc && \
+    echo 'echo ""' >> ~/.zshrc && \
+    echo 'echo "  Dotfiles not configured. Run:"' >> ~/.zshrc && \
+    echo 'echo "    chezmoi init --source=/home/testuser/.local/share/chezmoi --apply"' >> ~/.zshrc && \
+    echo 'echo ""' >> ~/.zshrc
 
 # Install chezmoi
 RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
