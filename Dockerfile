@@ -15,6 +15,9 @@ RUN useradd -m -s /bin/zsh testuser && \
 USER testuser
 WORKDIR /home/testuser
 
+# Create empty .zshrc to prevent zsh-newuser-install wizard
+RUN touch ~/.zshrc
+
 # Install chezmoi
 RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 ENV PATH="/home/testuser/.local/bin:$PATH"
