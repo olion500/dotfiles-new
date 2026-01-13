@@ -1,4 +1,19 @@
 # ============================================
+# First-time setup check
+# ============================================
+if [[ ! -d ~/.local/share/chezmoi ]]; then
+    echo ""
+    echo "  Dotfiles not initialized. Run:"
+    echo "    chezmoi init --apply olion500"
+    echo ""
+elif ! command -v starship &> /dev/null; then
+    echo ""
+    echo "  Packages not installed. Run:"
+    echo "    brew bundle --global"
+    echo ""
+fi
+
+# ============================================
 # Zsh core settings (minimal, no omz)
 # ============================================
 
