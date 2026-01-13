@@ -35,3 +35,8 @@ brew "direnv"       # directory-specific env
 
 # Version management
 brew "mise"
+
+# Include macOS-specific packages
+if OS.mac?
+  instance_eval(File.read(File.expand_path("~/.Brewfile.mac"))) if File.exist?(File.expand_path("~/.Brewfile.mac"))
+end

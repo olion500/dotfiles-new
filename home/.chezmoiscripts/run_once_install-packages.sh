@@ -10,13 +10,7 @@ else
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-echo "Installing common packages..."
-brew bundle --file="$HOME/.Brewfile" --no-lock
-
-# macOS only packages
-if [[ "$OSTYPE" == "darwin"* ]] && [[ -f "$HOME/.Brewfile.mac" ]]; then
-    echo "Installing macOS packages..."
-    brew bundle --file="$HOME/.Brewfile.mac" --no-lock
-fi
+echo "Installing packages..."
+brew bundle --global --no-lock
 
 echo "Package installation complete!"
